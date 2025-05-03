@@ -1,3 +1,32 @@
+/* 폰트 설정 */
+@font-face {
+    font-family: 'Hakgyoansim Puzzle Outline';
+    src: url('assets/Hakgyoansim\ Puzzle\ TTF\ Outline.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hakgyoansim Nadeuri B';
+    src: url('assets/Hakgyoansim\ Nadeuri\ TTF\ B.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HakgyoansimGgooreogiR';
+    src: url('assets/HakgyoansimGgooreogiR.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MapoBackpacking';
+    src: url('assets/MapoBackpacking.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* 전체 스타일 리셋 */
 * {
     margin: 0;
@@ -32,19 +61,17 @@ body {
 
 /* 선글라스 슬라이더 스타일 */
 .sunglasses-slider {
-    margin: 0 auto 30px;
+    margin: 0 auto;
     width: 100%;
     max-width: 300px;
 }
 
 .slider-container {
     width: 100%;
-    height: 180px;
+    height: 300px;
     position: relative;
     background-color: #F3F4F6;
-    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,19 +92,21 @@ body {
 }
 
 h1 {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: 28px;
+    font-family: 'Hakgyoansim Puzzle Outline', sans-serif;
+    font-size: 36px;
     text-align: center;
-    margin-bottom: 30px;
     font-weight: 400;
     letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 5px 0;
 }
 
 h2 {
+    font-family: 'Hakgyoansim Nadeuri B', sans-serif;
     font-size: 18px;
-    margin-bottom: 15px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.5px;
+    margin-bottom: 15px;
 }
 
 /* 입력 폼 스타일 */
@@ -358,17 +387,32 @@ h2 {
 }
 
 /* 결과 화면 스타일 */
+/* 결과 페이지 특정 요소에 폰트 적용 */
+#product-brand {
+    font-family: 'HakgyoansimGgooreogiR', sans-serif;
+    font-size: 42px;
+}
+
+#product-model {
+    font-family: 'HakgyoansimGgooreogiR', sans-serif;
+    text-align: center;
+    font-size: 24px;
+}
+
+#product-description {
+    font-family: 'MapoBackpacking', sans-serif;
+}
+
 .result-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0;
+    margin: 0px 0 20px;
 }
 
 .product-image-container {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 20px;
+    width: 300px;
+    height: 300px;
     position: relative;
     perspective: 500px;
 }
@@ -440,7 +484,7 @@ h2 {
 }
 
 #recommended-name {
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 10px;
     text-align: center;
 }

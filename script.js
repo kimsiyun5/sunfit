@@ -96,11 +96,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 나이 입력 이벤트 리스너
   ageInput.addEventListener("input", () => {
-    if (ageInput.value > 0 && ageInput.value <= 100) {
-      selectedAge = ageInput.value;
+    const ageValue = parseInt(ageInput.value);
+    
+    if (ageValue >= 15 && ageValue <= 100) {
+      selectedAge = ageValue;
+      // 입력된 나이가 유효한 범위내일 때 에러 메시지 있었다면 제거
+      const errorMessage = document.getElementById('age-error-message');
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    } else if (ageInput.value !== '') {
+      selectedAge = null;
+      
+      // 이미 에러 메시지가 있는지 확인
+      let errorMessage = document.getElementById('age-error-message');
+      
+      if (!errorMessage) {
+        // 에러 메시지 생성
+        errorMessage = document.createElement('span');
+        errorMessage.id = 'age-error-message';
+        errorMessage.style.color = '#ff3b30';
+        errorMessage.style.fontSize = '12px';
+        errorMessage.style.marginRight = '5px';
+        errorMessage.textContent = '15-100세만 가능';
+        
+        // 에러 메시지 추가
+        const ageSuffix = document.querySelector('.age-suffix');
+        ageSuffix.parentNode.insertBefore(errorMessage, ageSuffix);
+      }
     } else {
       selectedAge = null;
     }
+    
     checkSubmitButton();
   });
 
@@ -155,14 +182,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (uploadButtonContent) {
         uploadButtonContent.style.display = "none";
       }
+      
+      // upload-area의 height 속성 제거
+      uploadArea.style.height = "auto";
+      uploadArea.style.borderRadius = "15px";
+      uploadArea.style.padding = "10px";
 
-      // 기타 입력 요소가 모두 입력되었는지 확인
-      if (selectedGender && selectedAge) {
-        // 자동으로 분석 시작
-        startAnalysis();
-      } else {
-        checkSubmitButton();
-      }
+      // 제출 버튼 활성화 상태만 확인
+      checkSubmitButton();
     };
     reader.readAsDataURL(file);
   }
