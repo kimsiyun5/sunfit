@@ -63,12 +63,12 @@ body {
 .sunglasses-slider {
     margin: 0 auto;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
 }
 
 .slider-container {
     width: 100%;
-    height: 300px;
+    height: 400px;
     position: relative;
     background-color: #F3F4F6;
     overflow: hidden;
@@ -80,11 +80,15 @@ body {
 .slider-image {
     max-width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;              /* 변경: contain → cover */
+    object-position: center 20%;
+    object-position: 50% 75%;       /* 추가: 세로 아래 강조 */
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
+    clip-path: inset(20% 0 20% 0);
     animation: floatingAnimation 4s ease-in-out infinite;
     transform-style: preserve-3d;
+    transform: scale(1.6);          /* 추가: 확대 */
 }
 
 .slider-image.fade {
@@ -93,9 +97,9 @@ body {
 
 h1 {
     font-family: 'Hakgyoansim Puzzle Outline', sans-serif;
-    font-size: 36px;
+    font-size: 45px;
     text-align: center;
-    font-weight: 400;
+    font-weight: 520;
     letter-spacing: 1px;
     line-height: 1.2;
     margin: 5px 0;
@@ -227,7 +231,7 @@ h2 {
     background-color: #F3F4F6;
     color: #0071e3;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -411,30 +415,35 @@ h2 {
 }
 
 .product-image-container {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     position: relative;
     perspective: 500px;
+    overflow: hidden;  /* 새로 추가 */
 }
 
 #product-image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;  /* 기존 contain → cover로 변경 */
+    object-position: center 20%;  /* 새로 추가 */
+    object-position: 50% 75%;
     animation: floatingAnimation 4s ease-in-out infinite;
     transform-style: preserve-3d;
     position: relative;
+    clip-path: inset(20% 0 20% 0);
+    transform: scale(1.5);  /* 새로 추가 (선택 사항) */
 }
 
 @keyframes floatingAnimation {
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0) rotate(0deg) scale(1.4); /* scale 추가 */
     }
     50% {
-        transform: translateY(8px) rotate(0.5deg);
+        transform: translateY(8px) rotate(0.5deg) scale(1.4); /* scale 추가 */
     }
     100% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0) rotate(0deg) scale(1.4); /* scale 추가 */
     }
 }
 
@@ -517,4 +526,45 @@ h2 {
 .status-bar .icons {
     display: flex;
     gap: 5px;
+}
+
+/* 로딩 모달 스타일 */
+.loading-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-modal-content {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    width: 80%;
+}
+
+.loading-modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #FF623E;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
