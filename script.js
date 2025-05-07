@@ -189,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.result) {
           // 얼굴이 감지된 경우 기존 미리보기·분석 로직 실행
           uploadedPhoto = file;
+          console.log(data);
           const reader = new FileReader();
           reader.onload = (e) => {
             previewImage.src = e.target.result;
