@@ -116,9 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(data => {
         loadingModal.style.display = "none";
+        console.log(data.result)
         // API가 0~14 사이의 인덱스를 반환한다고 가정
         if (typeof data.result === 'number' && data.result >= 0 && data.result < 15) {
           recommendationIndex = data.result;
+          console.log(data.result)
           uploadedPhoto = file;
           const reader = new FileReader();
           reader.onload = e => {
