@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // 데이터 로드 및 랜덤 선글라스 선택
           loadProductData().then((products) => {
             // 랜덤 선글라스 선택
-            selectedProduct = selectDataIndex;
+            selectedProduct = products[selectDataIndex];
             console.log(selectedProduct);
             // result.html 페이지로 리다이렉션
             window.location.href = `result.html?id=${selectedProduct.id}`;
