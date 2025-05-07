@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedGender = null;
   let selectedAge = null;
   let uploadedPhoto = null;
-  let selectDataIndex = null;
   let selectedProduct = null;
+  let selectedIndex = null;
 
   // 슬라이더 이미지 요소와 데이터
   const sliderImage = document.querySelector(".slider-image");
@@ -186,11 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => {
         // 로딩 모달창 닫기
         loadingModal.style.display = "none";
+        
         if (data.result) {
           // 얼굴이 감지된 경우 기존 미리보기·분석 로직 실행
-          console.log(data.result)
           uploadedPhoto = file;
-          selectDataIndex = data.result;
+          selectedIndex = data.result;
           const reader = new FileReader();
           reader.onload = (e) => {
             previewImage.src = e.target.result;
@@ -281,8 +281,8 @@ document.addEventListener("DOMContentLoaded", () => {
           // 데이터 로드 및 랜덤 선글라스 선택
           loadProductData().then((products) => {
             // 랜덤 선글라스 선택
-            selectedProduct = products[selectDataIndex];
-            console.log(selectedProduct);
+            selectedProduct = getRandomProduct(products);
+
             // result.html 페이지로 리다이렉션
             window.location.href = `result.html?id=${selectedProduct.id}`;
           });
@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 랜덤 제품 선택 함수
   function getRandomProduct(products) {
-    const randomIndex = Math.floor(Math.random() * products.length);
+    const randomIndex = selectedIndex;
     return products[randomIndex];
   }
 
@@ -399,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedAge = null;
     uploadedPhoto = null;
     selectedProduct = null;
-    selectDataIndex = null;
+    selectedIndex = null;
 
     // 제출 버튼 비활성화
     submitButton.disabled = true;
