@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedGender = null;
   let selectedAge = null;
   let uploadedPhoto = null;
+  let detectedShapeIndex = null; // 추가: 서버에서 받은 얼굴형 인덱스
   let selectedProduct = null;
 
   // 슬라이더 이미지 요소와 데이터
@@ -188,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (data.result) {
           // 얼굴이 감지된 경우 기존 미리보기·분석 로직 실행
+          detectedShapeIndex = data.shape_index;
           uploadedPhoto = file;
           const reader = new FileReader();
           reader.onload = (e) => {
@@ -340,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 랜덤 제품 선택 함수
   function getRandomProduct(products) {
-    const randomIndex = Math.floor(Math.random() * products.length);
+    const randomIndex = detectedShapeIndex;
     return products[randomIndex];
   }
 
