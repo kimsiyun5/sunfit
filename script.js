@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedAge = null;
   let uploadedPhoto = null;
   let selectedProduct = null;
+  let faceAnalysisResult = null;
 
   // 슬라이더 이미지 요소와 데이터
   const sliderImage = document.querySelector(".slider-image");
@@ -186,8 +187,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // 로딩 모달창 닫기
         loadingModal.style.display = "none";
         
-        if (data.result) {
+        if (data.result !== undefined && data.result !== null) {
           // 얼굴이 감지된 경우 기존 미리보기·분석 로직 실행
+          faceAnalysisResult = data.result; 
           uploadedPhoto = file;
           const reader = new FileReader();
           reader.onload = (e) => {
@@ -279,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // 데이터 로드 및 랜덤 선글라스 선택
           loadProductData().then((products) => {
             // 랜덤 선글라스 선택
-            selectedProduct = getRandomProduct(products);
+            selectedProduct = getProductById(products, faceAnalysisResult);
 
             // result.html 페이지로 리다이렉션
             window.location.href = `result.html?id=${selectedProduct.id}`;
@@ -338,12 +340,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 랜덤 제품 선택 함수
-  function getRandomProduct(products) {
-    const randomIndex = Math.floor(Math.random() * products.length);
-    console.log(randomIndex);
-    return products[randomIndex];
+// 랜덤 제품 선택 함수를 ID 기반 선택 함수로 변경
+function getProductById(products, resultId) {
+  // resultId가 범위를 벗어나면 기본값 사용
+  if (resultId < 0 || resultId >= products.length) {
+    console.warn(`유효하지 않은 결과 ID: ${resultId}, 기본값 0 사용`);
+    resultId = 0;
   }
+  console.log(`얼굴 분석 결과 ID: ${resultId}`);
+  return products[resultId];
+}
+
 
   // 결과 화면 업데이트 함수
   function updateResultScreen(product) {
