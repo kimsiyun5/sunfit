@@ -159,6 +159,61 @@ document.addEventListener("DOMContentLoaded", () => {
     const analysisText2 = document.getElementById("analysis-text-2");
     const analysisText3 = document.getElementById("analysis-text-3");
 
+    // Supabase에 사용자 정보 저장
+    // 나이와 성별 정보 저장
+    
+    // 위치 정보 가져오기
+    const getLocationData = () => {
+      return new Promise((resolve) => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            // 성공 시 콜백
+            (position) => {
+              const locationData = {
+                latitude: position.coords.latitude,   // 위도
+                longitude: position.coords.longitude, // 경도
+                accuracy: position.coords.accuracy     // 정확도(미터 단위)
+              };
+              console.log('위치 정보 수집 성공:', locationData);
+              resolve(locationData);
+            },
+            // 오류 시 콜백
+            (error) => {
+              console.error('위치 정보 수집 실패:', error.message);
+              resolve(null); // 위치 정보 없이 진행
+            },
+            // 옵션
+            {
+              enableHighAccuracy: true, // 더 정확한 위치
+              timeout: 5000,            // 응답 제한 시간
+              maximumAge: 0             // 캐시된 위치 정보 사용 안 함
+            }
+          );
+        } else {
+          console.error('이 브라우저에서는 위치 정보를 지원하지 않습니다.');
+          resolve(null); // 위치 정보 없이 진행
+        }
+      });
+    };
+    
+    // saveUserInfo 함수 호출
+    // 참고: 이 부분을 실행하기 위해 supabase.js를 index.html에 포함해야 합니다
+    if (typeof saveUserInfo === 'function') {
+      // 위치 정보 가져오기 시도
+      getLocationData().then(locationData => {
+        // 위치 정보와 함께 저장 (위치 정보가 없는 경우에도 진행)
+        saveUserInfo(selectedAge, selectedGender, locationData)
+          .then(result => {
+            console.log('Supabase 저장 결과:', result);
+          })
+          .catch(error => {
+            console.error('Supabase 저장 오류:', error);
+          });
+      });
+    } else {
+      console.error('saveUserInfo 함수를 찾을 수 없습니다. supabase.js가 로드되었는지 확인하세요.');
+    }
+
     analysisText1.style.display = "block";
     setTimeout(() => {
       analysisText1.style.animation = "fadeOutDown 0.3s forwards";

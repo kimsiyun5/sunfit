@@ -11,6 +11,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
   </head>
   <body>
     <div class="app-container">
@@ -84,7 +86,7 @@
             분석 시작하기
           </button>
         </div>
-      </div>      
+      </div>
 
       <!-- 두 번째 화면: 로딩 화면 -->
       <div class="screen" id="loading-screen" style="display: none">
@@ -133,7 +135,7 @@
     </div>
 
     <!-- 사진 분석 로딩 모달 -->
-    <div id="loading-modal" class="loading-modal" style="display: none;">
+    <div id="loading-modal" class="loading-modal" style="display: none">
       <div class="loading-modal-content">
         <h3>사진 분석 중...</h3>
         <div class="loading-spinner"></div>
