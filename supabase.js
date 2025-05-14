@@ -9,7 +9,7 @@ const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 console.log("Supabase 클라이언트 초기화 완료:", supabase);
 
 // 사용자 정보 저장 함수
-async function saveUserInfo(age, gender, locationData = null) {
+async function saveUserInfo(age, gender) {
   // 입력값 검증
   if (!age || !gender) {
     console.error("나이와 성별은 필수 입력값입니다.");
@@ -26,15 +26,8 @@ async function saveUserInfo(age, gender, locationData = null) {
   // 저장할 데이터 객체 생성
   const userData = {
     age: ageNumber,
-    gender: gender
+    gender: gender,
   };
-
-  // 위치 정보가 있는 경우 추가
-  if (locationData) {
-    userData.latitude = locationData.latitude;
-    userData.longitude = locationData.longitude;
-    userData.accuracy = locationData.accuracy;
-  }
 
   try {
     // Supabase 테이블에 데이터 삽입
