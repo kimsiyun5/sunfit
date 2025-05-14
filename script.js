@@ -111,14 +111,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formData = new FormData();
     formData.append("file", file);
-
+// /api/validate-face - 사람인지 아닌지 분석하여 data.valid로 데이터 전달, "/api/analyze-face" - 얼굴 감정 인종 나이 분석하여 data.shape_index로 데이터 전달
     fetch("https://pizzzaboy-deepface.hf.space/api/is-face", { method: "POST", body: formData })
       .then(res => res.json())
       .then(data => {
         loadingModal.style.display = "none";
+        console.log(data.result)
         // API가 0~14 사이의 인덱스를 반환한다고 가정
         if (typeof data.result === 'number' && data.result >= 0 && data.result < 15) {
           recommendationIndex = data.result;
+          console.log(data.result)
           uploadedPhoto = file;
           const reader = new FileReader();
           reader.onload = e => {
