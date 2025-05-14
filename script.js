@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 얼굴 분석 API 호출
     analysisText1.style.display = "block";
     analysisText1.style.animation = "fadeInUp 0.3s forwards";
-    
+
     if (uploadedPhoto) {
       const formData = new FormData();
       formData.append("file", uploadedPhoto);
@@ -207,7 +207,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((data) => {
           console.log("얼굴 분석 결과:", data);
           // API가 인덱스를 반환
-          if (typeof data.result === "number" && data.result >= 0 && data.result < 15) {
+          if (
+            typeof data.result === "number" &&
+            data.result >= 0 &&
+            data.result < 15
+          ) {
             recommendationIndex = data.result;
             console.log("추천 인덱스:", recommendationIndex);
           } else {
@@ -215,14 +219,14 @@ document.addEventListener("DOMContentLoaded", () => {
             recommendationIndex = Math.floor(Math.random() * 15);
             console.log("기본 추천 인덱스 사용:", recommendationIndex);
           }
-          
+
           // fetch가 완료된 후 두번째 텍스트로 변경
           analysisText1.style.animation = "fadeOutDown 0.3s forwards";
           setTimeout(() => {
             analysisText1.style.display = "none";
             analysisText2.style.display = "block";
             analysisText2.style.animation = "fadeInUp 0.3s forwards";
-            
+
             // 두번째 텍스트 표시 후 세번째 텍스트로 자동 전환
             setTimeout(() => {
               analysisText2.style.animation = "fadeOutDown 0.3s forwards";
@@ -230,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 analysisText2.style.display = "none";
                 analysisText3.style.display = "block";
                 analysisText3.style.animation = "fadeInUp 0.3s forwards";
-                
+
                 // 추천 제품 페이지로 이동
                 setTimeout(() => {
                   loadProductData().then((products) => {
@@ -253,21 +257,21 @@ document.addEventListener("DOMContentLoaded", () => {
           // 오류 발생 시 기본값으로 설정
           recommendationIndex = Math.floor(Math.random() * 15);
           console.log("오류 발생으로 기본 인덱스 사용:", recommendationIndex);
-          
+
           // 오류 발생시에도 다음 단계로 진행
           analysisText1.style.animation = "fadeOutDown 0.3s forwards";
           setTimeout(() => {
             analysisText1.style.display = "none";
             analysisText2.style.display = "block";
             analysisText2.style.animation = "fadeInUp 0.3s forwards";
-            
+
             setTimeout(() => {
               analysisText2.style.animation = "fadeOutDown 0.3s forwards";
               setTimeout(() => {
                 analysisText2.style.display = "none";
                 analysisText3.style.display = "block";
                 analysisText3.style.animation = "fadeInUp 0.3s forwards";
-                
+
                 setTimeout(() => {
                   loadProductData().then((products) => {
                     const product = products.find(
@@ -285,10 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
           }, 300);
         });
     } else {
-      // uploadedPhoto가 없는 경우 에러 처리 
+      // uploadedPhoto가 없는 경우 에러 처리
       console.error("업로드된 사진이 없습니다.");
       recommendationIndex = Math.floor(Math.random() * 15); // 기본값 설정
-      
+
       // 기본 애니메이션 실행
       setTimeout(() => {
         analysisText1.style.animation = "fadeOutDown 0.3s forwards";
@@ -296,14 +300,14 @@ document.addEventListener("DOMContentLoaded", () => {
           analysisText1.style.display = "none";
           analysisText2.style.display = "block";
           analysisText2.style.animation = "fadeInUp 0.3s forwards";
-          
+
           setTimeout(() => {
             analysisText2.style.animation = "fadeOutDown 0.3s forwards";
             setTimeout(() => {
               analysisText2.style.display = "none";
               analysisText3.style.display = "block";
               analysisText3.style.animation = "fadeInUp 0.3s forwards";
-              
+
               setTimeout(() => {
                 loadProductData().then((products) => {
                   const product = products.find(
