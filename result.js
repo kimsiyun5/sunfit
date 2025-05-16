@@ -90,6 +90,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     productImage.src = product.productImage;
     recommendedName.textContent = product.recommendedName;
     productDescription.textContent = product.description;
+
+    // 젠틀몬스터 공식 사이트(혹은 제품 상세 페이지)로 이동
+    const productLink = document.getElementById("product-link");
+    // 제품별 상세페이지 URL이 있다면 product.detailUrl 사용, 없으면 전체 리스트로 연결
+    productLink.href = product.detailUrl || "https://www.gentlemonster.com/kr/ko/category/sunglasses/view-all";
   }
 
   // 공유 버튼 클릭 이벤트
