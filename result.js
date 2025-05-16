@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // 분석 완료 플래그 확인
+  const accessGranted = sessionStorage.getItem("analysisCompleted");
+
+  if (!accessGranted) {
+    alert("분석을 먼저 진행해주세요.");
+    window.location.href = "index.html";
+    return;
+  }
+
+  // 접근 허용 후 플래그 삭제 (한 번만 허용)
+  sessionStorage.removeItem("analysisCompleted");
+
   const productBrand = document.getElementById("product-brand");
   const productModel = document.getElementById("product-model");
   const productImage = document.getElementById("product-image");

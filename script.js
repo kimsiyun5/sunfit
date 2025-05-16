@@ -246,6 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       console.error("추천 제품을 찾을 수 없습니다.");
                       return;
                     }
+                    sessionStorage.setItem("analysisCompleted", "true");
                     window.location.href = `result.html?id=${product.id}`;
                   });
                 }, 1500);
