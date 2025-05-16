@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productImage = document.getElementById("product-image");
   const recommendedName = document.getElementById("recommended-name");
   const productDescription = document.getElementById("product-description");
+  const productetailUrl = document.getElementById("detailUrl");
   const shareButton = document.getElementById("share-button");
   const restartButton = document.getElementById("restart-button");
 
