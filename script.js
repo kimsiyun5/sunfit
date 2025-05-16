@@ -36,10 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 초기 데이터 로드 및 슬라이더 설정
   loadInitialData();
 
-  // 페이지 로드 시 분석 플래그 초기화
-  sessionStorage.removeItem("analysisCompleted");
-
-
   async function loadInitialData() {
     try {
       const products = await loadProductData();
@@ -333,7 +329,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  submitButton.addEventListener("click", () => startAnalysis());
+  submitButton.addEventListener("click", () => {
+    sessionStorage.removeItem("analysisCompleted"); // 초기화
+
+    // 이후 기존 startAnalysis 호출
+    startAnalysis();
+  });
 
   async function loadProductData() {
     try {
