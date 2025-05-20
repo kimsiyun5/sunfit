@@ -1,7 +1,7 @@
 // 3단계에서 복사한 Supabase URL과 anon key를 여기에 입력하세요.
-const SUPABASE_URL = "https://ipktoobcfmdjynmftnmr.supabase.co";
+const SUPABASE_URL = "https://omtokzdnokpgqqjskgco.supabase.co";
 const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlwa3Rvb2JjZm1kanlubWZ0bm1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NzM0MjgsImV4cCI6MjA2MjM0OTQyOH0.Qkn5SfnrmNeDKwd9Dfvy9Da4LhOU2Z8HzooIHHkslnk";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9tdG9remRub2twZ3FxanNrZ2NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3Mjk3NzUsImV4cCI6MjA2MzMwNTc3NX0.GXKpAw5qZcyK1qt_pjg9mwvid-opDhUtctAoCQdCllM";
 
 // Supabase 클라이언트 초기화
 const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
